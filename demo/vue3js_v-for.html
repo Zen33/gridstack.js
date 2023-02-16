@@ -119,9 +119,11 @@
           function remove(widget) {
             var index = items.value.findIndex(w => w.id == widget.id);
             items.value.splice(index, 1);
-            const selector = `#${widget.id}`;
-            grid.removeWidget(selector, false);
-            updateInfo();            
+            nextTick(() => {
+              const selector = `#${widget.id}`;
+              grid.removeWidget(selector, false);
+              updateInfo(); 
+            });           
           }
           
           function updateInfo() {
